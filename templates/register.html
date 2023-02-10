@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
+{% block content %}
+<br><br><br>
+<div class="row">
+<div class="col-md-6 offset-md-3">
+    <h3>Qeydiyyat formu</h3>  
+    <br>  
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {% for field in form %}
+            <p >{{ field }}</p> 
+
+            {% for error in field.errors %}
+                <small style="color: red">{{ error }}</small>
+            {% endfor %}
+    {% endfor %}
+    <button type="submit"class = "btn btn-danger">Qeydiyyatdan keçin</button>
+</form>
+</div>
+</div>
+
+{% endblock %}
+

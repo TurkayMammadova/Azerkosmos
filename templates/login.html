@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>Login səhifəsi</title>
+{% endblock %}
+{% block content %}
+<br><br><br>
+<div class="row">
+<div class="col-md-6 offset-md-3">
+<h3>login</h3>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+    <p >{{ field.label }}: <br> {{ field }}</p> 
+    {% endfor %}
+
+    <button type="submit" class="btn btn-danger">Login</button>
+</form>
+
+<p>Hesabınız yoxdur? <a href="{% url 'user:register' %}">
+    Burada qeydiyyatdan keçin</a></p>
+</div>
+</div>
+{% endblock %}

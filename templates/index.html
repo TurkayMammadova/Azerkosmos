@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% block content %}
+<br><br>
+ {% if request.user.is_authenticated %}
+
+<div class="jumbotron text-center">
+    <h3>"Week Planning" səhifəsinə Xoş gəldiniz,{{request.user.username}}!!!</h3>
+    <p>Çalışma cədvəli ilə tanış olmaq üçün,<a href="">
+        buraya keçid edə bilərsiniz</a></p>
+</div>
+
+<p>
+   
+    {% else %}
+    <div class="jumbotron text-center">
+        <h3>"Week Planning" səhifəsinə Xoş gəldiniz!!!</h3>
+        <p>Bu səhifədə hər departamentin əməkdaşı öz çalışma cədvəlini aydın şəkildə görə bilər.</p>
+    </div>
+    
+    <p>
+    {% endif %}
+
+</p>
+
+{% endblock %}
