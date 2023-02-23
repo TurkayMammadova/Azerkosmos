@@ -34,7 +34,7 @@ def login(request):
             if user:
                 auth_login(request, user)
                 print('User is here!!!')
-                return redirect('core:index')
+                return redirect('index')
 
             print('===================')
 
@@ -44,6 +44,6 @@ def login(request):
 def Logout(request):
     logout(request)
     messages.success(request,'Uğurla logout oldunuz...')
-    return redirect('core:index')
+    return redirect('index')
     
 

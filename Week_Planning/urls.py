@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from Core.views import index
 
 
 
@@ -24,6 +25,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',index,name = "index"),
     path('core/',include("Core.urls",namespace="core")),
     path('user/',include("User.urls",namespace="user")),
     

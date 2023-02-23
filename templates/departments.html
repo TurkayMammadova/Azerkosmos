@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{% block content %}
+<br>
+<br>
+<br>
+<h3 style="margin-left:500px;">Departamentlər</h3>
+
+<hr>
+<br>
+<div style="margin-left:475px;">
+{% for department in departments %}
+<a href="{% url 'Core:detail' department.id %}" class='btn btn-danger' >{{department.name}}</a>
+{% endfor %}
+
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
