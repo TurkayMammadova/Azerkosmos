@@ -1,38 +1,22 @@
 from django.db import models
+# from User.models import User
 
-class Employees(models.Model):
+
+
+class Department(models.Model):
     name=models.CharField(max_length=50,unique=True)
     
     
     def __str__(self):
         return self.name
     
-class Department(models.Model):
-    name=name=models.CharField(max_length=50,unique=True)
     
-    def __str__(self):
-        return self.name
-    
-class Work_planning(models.Model):
-    STATUS_CHOICES=(
-        (1,"on_side"),
-        (2,"remote"),
-    )
-    author=models.ForeignKey('User.User',on_delete=models.CASCADE)
-    # department=models.CharField(max_length=50,null=False,blank=True)
-    department_id=models.ForeignKey(Department,on_delete=models.CASCADE,null=True,blank=True)
-    employees_id=models.ManyToManyField(Employees)
-    status=models.IntegerField(choices=STATUS_CHOICES,default=1)
-    created_date=models.DateTimeField(auto_now_add=True)
-    
-def __str__(self):
-        return self.department
-    
-# class Meta:
-#     ordering = ['-created_date']
-    
-
-
+class TheTable(models.Model):
+   name=models.CharField(max_length=50,null=True)
+   worker=models.OneToOneField(to='User.User',null=True,blank=True,on_delete=models.SET_NULL,related_name='table')
+   department=models.ForeignKey(Department,on_delete=models.CASCADE,blank=True,null=True)
+   def __str__(self):
+        return str(self.id)
 
 
 

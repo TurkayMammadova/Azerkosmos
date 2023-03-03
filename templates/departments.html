@@ -7,13 +7,12 @@
 
 <hr>
 <br>
-<div style="margin-left:475px;">
+<div style="margin-left:440px;">
 {% for department in departments %}
 <a href="{% url 'Core:detail' department.id %}" class='btn btn-danger' >{{department.name}}</a>
 {% endfor %}
 
 </div>
-
 
 {% endblock %}
 

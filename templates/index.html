@@ -1,12 +1,26 @@
 {% extends 'base.html'%}
 {% block content %}
 <br><br>
+<main role="main" class="container"  >
+  {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == "error"%}
+      <div class="alert alert-danger">
+        {{ message }}
+      </div>
+      {% else %}
+      <div class="alert alert-success">
+        {{ message }}
+      </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
  {% if request.user.is_authenticated %}
 
 <div class="jumbotron text-center">
-    <h3>"Week Planning" səhifəsinə Xoş gəldiniz,{{request.user.username}}!!!</h3>
-    <p>Çalışma cədvəli ilə tanış olmaq üçün,<a href="">
-        buraya keçid edə bilərsiniz</a></p>
+    <h3>"Week Planning" səhifəsinə Xoş gəldiniz,{{request.user.username}}!</h3>
+    <p>Çalışma cədvəli ilə tanış olmaq üçün,<a href="{% url 'core:departments' %}">
+        bura keçid edə bilərsiniz.</a></p>
 </div>
 
 <p>

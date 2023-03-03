@@ -2,21 +2,20 @@
 {% load static %}
 {% block content %}
 <br><br><br>
-<h3 style='margin-left:500px; color:green;'>İŞÇİLƏRİN SİYAHISI</h3>
+
+<h3 style='margin-left:400px; color:green;'>İŞÇİLƏRİN SİYAHISI</h3>
 <br><br>
 <div class='row'>
     <div class='col-6'>
-      <table border='1' width="100%"  cellpadding="5" cellspacing="0">
+      <table border='1' width="100%" cellpadding="5" cellspacing="0">
         <tr>
-          <th  style='margin-left:500px;' >Ofisdə işləyəcək işçilər</th>
+          <th  >Ofisdə işləyəcək işçilər</th>
         </tr>
           <tr>
             <td >
-              <table width="100%"  >
-            {% for onside in onsides %}
-                {% for i in onside.employees_id.all %} 
-                  <tr><td>{{ i.name }}</td></tr>
-                {% endfor %}
+              <table>
+            {% for employee in onsides %}
+                  <tr><td>{{ employee.username}}</td></tr>
             {% endfor %}
               </table>
             </td>
@@ -24,6 +23,7 @@
       </table>
     </div>
 <br><br>
+
     <div class='col-6'>
       <table border='1' width="100%"  cellpadding="5" cellspacing="0">
         <tr >
@@ -31,11 +31,9 @@
         </tr>
           <tr>
             <td >
-              <table width="100%"  >
-            {% for remote in remotes %}
-                {% for i in remote.employees_id.all %} 
-                  <tr><td>{{ i.name }}</td></tr>
-                {% endfor %}
+              <table>
+            {% for employee in remotes %}
+                  <tr><td>{{employee.username }}</td></tr>
             {% endfor %}
               </table>
             </td>
@@ -43,18 +41,42 @@
       </table>
   </div>
 </div>
+
+<hr>
+<br><br><br>
+<div  style="display:flex; width:500px">
+ 
+  {% for table in tables %}
+
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input style="margin-left:300px;" name="id" type="hidden" value="{{table.id}}">
+      {% if table.worker %}
+      <button style="margin-left:50px;height:50px;width:100px;background-color:red;" type="submit">{{table.name}}</button>
+      {% else %}
+      <button style="margin-left:50px;height: 50px;width:50px;background-color:green" type="submit">{{table.name}}</button>
+      {%  endif %}
+      
+    </form>
+    <hr>
+  {% endfor %}
+
+</div>
+<br><br>
+<div  >
+<table  border="1" width="400px" style="margin-left:300px">
+  <tr>
+    <th>Işçinin adı və əyləşəcəyi masa</th>
+    
+
+  </tr>
+{% for i in select_table %}
+  {% if i.worker %}
+  <tr>
+    <td>{{i.worker}} masa {{i.name}}-də əyləşəcək</td>
+  </tr>
+ {% endif %}
+  {% endfor %}
+</table>
+</div>
   {% endblock %}
-
-
-{% comment %} {% for employee in employees %}
-    {% for i in employee.employees_id.all %}
-
-        <h1>{{i.name}}</h>
-    {% endfor %}
-
-{% endfor %}
-
-
-
-{% endblock %} {% endcomment %}
-
